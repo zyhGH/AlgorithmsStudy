@@ -23,9 +23,9 @@ public class Sort {
 
     private static void insertSort(int[] a) {
         for (int i = 1; i < a.length; i++) {
-            int temp = a[i];
+            int temp = a[i];        //每次拿一个数
             int j = i - 1;
-            for(; j >= 0; j--) {
+            for(; j >= 0; j--) {    //与temp前面的已排序数组比较
                 if (a[j] > temp) {
                     a[j + 1] = a[j];
                 }else {
