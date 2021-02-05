@@ -6,52 +6,6 @@ public class MiddleSort {
     }
 
     //归并
-    /*private static void sort1(int[] a) {
-        mergeSort(a, 0, a.length - 1);
-        for (int value : a) {
-            System.out.println(value);
-        }
-    }
-
-    private static void mergeSort(int[] a, int p, int r) {
-        if (p >= r) return;
-        int q = (p + r) / 2;
-        mergeSort(a, p, q);
-        mergeSort(a, q + 1, r);
-        merge(a, p, q, r);
-    }
-
-    private static void merge(int[] a, int p, int q, int r) {
-        int i = p;
-        int j = q + 1;
-        int k = 0;
-        int[] tempArr = new int[r - p + 1];
-        while (i <= q && j <= r) {
-            if (a[i] <= a[j]) {
-                tempArr[k] = a[i];
-                i++;
-            } else {
-                tempArr[k] = a[j];
-                j++;
-            }
-            k++;
-        }
-        int start = i;
-        int end = q;
-        if (j <= r) {
-            start = j;
-            end = r;
-        }
-
-        // 将剩余的数据拷贝到临时数组tmp
-        while (start <= end) {
-            tempArr[k++] = a[start++];
-        }
-        for (int l = 0; l < r - p + 1; l++) {
-            a[l + p] = tempArr[l];
-        }
-    }*/
-
     private static void sort1(int[] a) {
         makeGroup(a, 0, a.length - 1);
         for (int value : a) {
