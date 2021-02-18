@@ -36,4 +36,19 @@ public class SwapPairs {
             this.next = next;
         }
     }
+
+    public ListNode swapPairs2(ListNode head) {
+        ListNode nullNode = new ListNode(0);
+        nullNode.next = head;
+        ListNode cur = nullNode;
+        while(cur.next != null && cur.next.next != null) {
+            ListNode a = cur.next;
+            ListNode b = cur.next.next;
+            cur.next = b;
+            a.next = b.next;
+            b.next = a;
+            cur = cur.next.next;
+        }
+        return nullNode.next;
+    }
 }

@@ -6,11 +6,6 @@ package com.zyh.algorithmsstudy.study.arraylinkedlist;
  * 空间O(1)
  */
 public class LinkedReverse {
-
-    public static void main(String[] args) {
-
-    }
-
     public ListNode reverseList(ListNode head) {
         ListNode cur = head;
         ListNode prev = null;
@@ -38,6 +33,18 @@ public class LinkedReverse {
             this.val = val;
             this.next = next;
         }
+    }
+
+    public ListNode reverseList2(ListNode head) {
+        ListNode cur = head;
+        ListNode pre = null;
+        while (cur != null) {
+            ListNode temp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = temp;
+        }
+        return pre;
     }
 }
 
