@@ -40,14 +40,14 @@ public class SwapPairs {
     public ListNode swapPairsTest(ListNode head) {
         ListNode nullNode = new ListNode(0);
         nullNode.next = head;
-        ListNode cur = nullNode;
-        if (cur.next != null && cur.next.next != null) {
-            ListNode a = cur.next;
-            ListNode b = cur.next.next;
-            cur.next = b;
+        ListNode temp = nullNode;
+        while(temp.next != null && temp.next.next != null) {
+            ListNode a = temp.next;
+            ListNode b = temp.next.next;
+            temp.next = b;
             a.next = b.next;
             b.next = a;
-            cur = cur.next.next;
+            temp = temp.next.next;
         }
         return nullNode.next;
     }

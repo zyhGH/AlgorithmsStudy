@@ -53,7 +53,7 @@ public class LinkedHasCycle {
     public boolean hasCycleTest(ListNode head) {
         ListNode f = head;
         ListNode s = head;
-        while(f != null && f.next != null) {
+        while (f != null && f.next != null) {
             f = f.next.next;
             s = s.next;
             if (f == s) return true;

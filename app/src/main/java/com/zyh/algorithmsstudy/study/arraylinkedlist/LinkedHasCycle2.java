@@ -40,13 +40,13 @@ public class LinkedHasCycle2 {
 
     public ListNode detectCycleTest(ListNode head) {
         HashMap<ListNode, Integer> map = new HashMap<>();
-        ListNode temp = head;
-        while(temp != null) {
-            if (map.containsKey(temp))
-                return temp;
-            else {
-                map.put(temp, temp.val);
-                temp = temp.next;
+        ListNode cur = head;
+        while(cur != null) {
+            if (map.containsKey(cur)) {
+                return cur;
+            }else {
+                map.put(cur, cur.val);
+                cur = cur.next;
             }
         }
         return null;
