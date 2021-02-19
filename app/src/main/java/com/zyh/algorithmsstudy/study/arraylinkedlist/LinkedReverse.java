@@ -35,16 +35,16 @@ public class LinkedReverse {
         }
     }
 
-    public ListNode reverseList2(ListNode head) {
+    public ListNode reverseListTest(ListNode head) {
         ListNode cur = head;
-        ListNode pre = null;
+        ListNode prev = null;
         while (cur != null) {
-            ListNode temp = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = temp;
+            ListNode next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
         }
-        return pre;
+        return prev;
     }
 }
 
