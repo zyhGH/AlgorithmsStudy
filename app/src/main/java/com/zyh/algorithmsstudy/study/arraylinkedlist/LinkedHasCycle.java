@@ -56,7 +56,9 @@ public class LinkedHasCycle {
         while (f != null && f.next != null) {
             f = f.next.next;
             s = s.next;
-            if (f == s) return true;
+            if (f == s) {
+                return true;
+            }
         }
         return false;
     }
