@@ -12,7 +12,7 @@ import java.util.PriorityQueue;
  */
 public class MaxSlidingWindow {
     public static void main(String[] args) {
-        maxSlidingWindow(new int[]{1,3,-1,-3,5,3,6,7}, 3);
+        maxSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3);
     }
 
     public static int[] maxSlidingWindow(int[] nums, int k) {
@@ -22,22 +22,39 @@ public class MaxSlidingWindow {
         int[] result = new int[nums.length - k + 1];
         int temp = 0;
 
-        for (int i = 0; i < k; i++) {
-            while (!queue.isEmpty() && queue.peekLast() < nums[i]) {
+        for (int i = 0; i < nums.length; i++) {
+            while (!queue.isEmpty() && nums[queue.peekLast()] <= nums[i]) {
                 queue.pollLast();
             }
-            queue.offerLast(nums[i]);
-        }
-        result[temp++] = queue.peekFirst();
-        for (int j = k; j < nums.length; j++) {
-            if (nums[j - k] == queue.peekFirst()) { //表示queue里有k个元素了 因为最大的一直在最前面 出现更大的前面会被删除
+            queue.offerLast(i);
+            if (queue.peekFirst() <= i - k) {
                 queue.pollFirst();
             }
-            while (!queue.isEmpty() && queue.peekLast() < nums[j]) {
+            if (i >= k - 1) {
+                result[temp++] = nums[queue.peekFirst()];
+            }
+        }
+        return result;
+    }
+
+    public static int[] maxSlidingWindowTest(int[] nums, int k) {
+        if (nums == null || nums.length < 2) return nums;
+
+        LinkedList<Integer> queue = new LinkedList<>();
+        int[] result = new int[nums.length - k + 1];
+        int temp = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            while (!queue.isEmpty() && nums[queue.peekLast()] <= nums[i]) {
                 queue.pollLast();
             }
-            queue.offerLast(nums[j]);
-            result[temp++] = queue.peekFirst();
+            queue.offerLast(i);
+            if (queue.peekFirst() <= i - k) {
+                queue.pollFirst();
+            }
+            if (i >= k - 1) {
+                result[temp++] = nums[queue.peekFirst()];
+            }
         }
         return result;
     }
