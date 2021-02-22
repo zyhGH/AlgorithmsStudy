@@ -34,20 +34,16 @@ public class BracketsValid {
     public boolean isValidTest(String s) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
-            switch (s.charAt(i)) {
-                case '(' :
-                    stack.push(')');
-                    break;
-                case '[' :
-                    stack.push(']');
-                    break;
-                case '{' :
-                    stack.push('}');
-                    break;
-                default:
-                    if (stack.isEmpty() || s.charAt(i) != stack.pop()) {
-                        return false;
-                    }
+            if (s.charAt(i) == '(') {
+                stack.push(')');
+            }else if (s.charAt(i) == '[') {
+                stack.push(']');
+            }else if (s.charAt(i) == '{') {
+                stack.push('}');
+            }else {
+                if (stack.isEmpty() || stack.pop() != s.charAt(i)) {
+                    return false;
+                }
             }
         }
         return stack.isEmpty();
