@@ -38,24 +38,7 @@ public class MaxSlidingWindow {
     }
 
     public static int[] maxSlidingWindowTest(int[] nums, int k) {
-        if (nums == null || nums.length < 2) return nums;
 
-        LinkedList<Integer> queue = new LinkedList<>();
-        int[] result = new int[nums.length - k + 1];
-        int temp = 0;
-
-        for (int i = 0; i < nums.length; i++) {
-            while (!queue.isEmpty() && nums[queue.peekLast()] <= nums[i]) {
-                queue.pollLast();
-            }
-            queue.offerLast(i);
-            if (queue.peekFirst() <= i - k) {
-                queue.pollFirst();
-            }
-            if (i >= k - 1) {
-                result[temp++] = nums[queue.peekFirst()];
-            }
-        }
-        return result;
+        return null;
     }
 }

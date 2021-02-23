@@ -52,6 +52,7 @@ public class LinkedHasCycle {
 
     public boolean hasCycleTest(ListNode head) {
 
+
         return false;
     }
 }

@@ -31,13 +31,27 @@ public class KthLargest {
 }
 
 class KthLargestTest {
+    PriorityQueue<Integer> pq;
+    int k;
 
     public KthLargestTest(int k, int[] nums) {
-
+        pq = new PriorityQueue<>(k);
+        this.k = k;
+        for (int num: nums){
+            add(num);
+        }
     }
 
     public int add(int val) {
-        return 0;
+        if (pq.size() < k) {
+            pq.offer(val);
+        }else {
+            if (pq.peek() < val) {
+                pq.poll();
+                pq.offer(val);
+            }
+        }
+        return pq.peek();
     }
 }
 

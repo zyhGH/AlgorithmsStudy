@@ -40,6 +40,7 @@ public class LinkedHasCycle2 {
 
     public ListNode detectCycleTest(ListNode head) {
 
+
         return null;
     }
 }
