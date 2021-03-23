@@ -35,3 +35,19 @@ class User implements Serializable {
         return new User(name, age);
     }
 }
+
+class MyThread extends Thread {
+    int a;
+
+    public MyThread(int a) {
+        this.a = a;
+    }
+
+    @Override
+    public void run() {
+        while (a < 1000) {
+            a += 1;
+            System.out.println(getName() + "     " + a);
+        }
+    }
+}

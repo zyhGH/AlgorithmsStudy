@@ -41,11 +41,11 @@ public class MaxSlidingWindow {
         if (nums == null || nums.length < 2) return nums;
 
         LinkedList<Integer> queue = new LinkedList<>();
-        int[] result = new int[nums.length - k + 1];
+        int[] result = new int[nums.length - 1 + k];
         int temp = 0;
 
         for (int i = 0; i < nums.length; i++) {
-            while (!queue.isEmpty() && nums[queue.peekLast()] < nums[i]) {
+            while (!queue.isEmpty() && nums[queue.peekLast()] <= nums[i]) {
                 queue.pollLast();
             }
             queue.offerLast(i);
@@ -56,7 +56,6 @@ public class MaxSlidingWindow {
                 result[temp++] = nums[queue.peekFirst()];
             }
         }
-
         return result;
     }
 }
