@@ -38,6 +38,17 @@ public class SwapPairs {
     }
 
     public ListNode swapPairsTest(ListNode head) {
-
+        ListNode prev = new ListNode(0);
+        prev.next = head;
+        ListNode cur = prev;
+        while (cur.next != null && cur.next.next != null) {
+            ListNode a = cur.next;
+            ListNode b = cur.next.next;
+            cur.next = b;
+            a.next = b.next;
+            b.next = a;
+            cur = cur.next.next;
+        }
+        return prev.next;
     }
 }
