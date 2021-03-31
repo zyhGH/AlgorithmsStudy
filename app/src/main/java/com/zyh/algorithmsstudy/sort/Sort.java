@@ -3,7 +3,7 @@ package com.zyh.algorithmsstudy.sort;
 public class Sort {
     public static void main(String[] args) {
         int[] a = new int[]{3,5,6,4,1,7,0};
-        selectionSort(a);
+        insertSort2(a);
     }
 
     private static void bubbleSort(int[] a) {
@@ -59,14 +59,17 @@ public class Sort {
     }
 
     private static void bubbleSort2(int[] a) {
-        for (int i = 0; i < a.length; i++) {
-            for (int j = 1; j < a.length - i; j++) {
-                if (a[j - 1] > a[j]) {
-                    int temp = a[j - 1];
-                    a[j - 1] = a[j];
+        for (int i = 0; i < a.length - 1; i++) {
+            for (int j = 0; j < a.length - i - 1; j++) {
+                if (a[j + 1] < a[j]) {
+                    int temp = a[j + 1];
+                    a[j + 1] = a[j];
                     a[j] = temp;
                 }
             }
+        }
+        for (int value : a) {
+            System.out.print(value);
         }
     }
 
@@ -74,12 +77,21 @@ public class Sort {
         for (int i = 1; i < a.length; i++) {
             int temp = a[i];
             int j = i - 1;
-            for (; j >= 0; j--) {
+            for(; j >= 0; j--) {
                 if (a[j] > temp) {
                     a[j + 1] = a[j];
+                }else {
+                    break;
                 }
             }
             a[j + 1] = temp;
         }
+        for (int value : a) {
+            System.out.print(value);
+        }
+    }
+
+    private static void selectionSort2(int[] a) {
+
     }
 }

@@ -2,7 +2,7 @@ package com.zyh.algorithmsstudy.sort;
 
 public class ThreeImportantSort {
     public static void main(String[] args) {
-        quickSort(new int[]{3,5,5,6,2,1,8});
+        mergeSort(new int[]{3,0,5,6,2,1,8});
     }
 
     /**
@@ -32,7 +32,7 @@ public class ThreeImportantSort {
      * 归并排序
      */
     private static void mergeSort(int[] a) {
-        makeGroup(a, 0, a.length - 1);
+        makeGroup1(a, 0, a.length - 1);
         for (int i = 0; i < a.length; i++) {
             System.out.println(a[i]);
         }
@@ -81,12 +81,53 @@ public class ThreeImportantSort {
         }
     }
 
+    /**
+     * 复写归并
+     * @param a
+     * @param start
+     * @param end
+     */
+    public static void makeGroup1(int[] a, int start, int end) {
+        if (start >= end) return;
+        int mid = (start + end) / 2;
+        makeGroup1(a, start, mid);
+        makeGroup1(a, mid + 1, end);
+        merge1(a, start, mid, end);
+    }
+
+    public static void merge1(int[] a, int start, int mid, int end) {
+        int s = start;
+        int m = mid + 1;
+        int k = 0;
+
+        int[] temp = new int[end - start + 1];
+        while (s <= mid && m <= end) {
+            if (a[s] <= a[m]) {
+                temp[k++] = a[s++];
+            }else {
+                temp[k++] = a[m++];
+            }
+        }
+        int rS = s;
+        int rE = mid;
+        if (m <= end) {
+            rS = m;
+            rE = end;
+        }
+        while (rS <= rE) {
+            temp[k++] = a[rS++];
+        }
+        for (int i = 0; i < end - start + 1; i++) {
+            a[i + start] = temp[i];
+        }
+    }
+
 
     /**
      * 快速排序
      */
     private static void quickSort(int[] a) {
-        createGroup(a, 0, a.length - 1);
+        createGroup1(a, 0, a.length - 1);
         for (int i = 0; i < a.length; i++) {
             System.out.println(a[i]);
         }
@@ -104,17 +145,50 @@ public class ThreeImportantSort {
         int temp = a[end];
         int i = start;
         for (int j = i; j < end; j++) {
-            if (a[j] < temp) {
+            if (a[j] < temp) {      //比他pivot小的就放在左边，不用管排序
                 int tmp = a[j];
                 a[j] = a[i];
                 a[i] = tmp;
-                i++;
+                i++;        //当碰见比他小的 i就要++了
             }
         }
 
-        int tmp = a[end];
+        int tmp = a[end];   //从这一步开始的操作就是要判断，如果有数比a[end]大的话，a[end]要移到i的位置上去
         a[end] = a[i];
         a[i] = tmp;
+        return i;
+    }
+
+
+    /**
+     * 复写快排
+     * @param a
+     * @param start
+     * @param end
+     */
+    private static void createGroup1(int[] a, int start, int end) {
+        if (start >= end) return;
+
+        int pivot = getPivot(a, start, end);
+        createGroup1(a, start, pivot - 1);
+        createGroup1(a, pivot + 1, end);
+    }
+
+    private static int getPivot(int[] a, int start, int end) {
+        int num = a[end];
+        int i = start;
+        for (int j = i; j < end; j++) {
+            if (a[j] < num) {
+                int temp = a[j];
+                a[j] = a[i];
+                a[i] = temp;
+                i++;
+            }
+        }
+        int temp = a[end];
+        a[end] = a[i];
+        a[i] = temp;
+
         return i;
     }
 }
