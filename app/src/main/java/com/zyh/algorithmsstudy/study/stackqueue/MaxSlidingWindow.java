@@ -40,20 +40,20 @@ public class MaxSlidingWindow {
     public static int[] maxSlidingWindowTest(int[] nums, int k) {
         if (nums == null || nums.length < 2) return nums;
 
-        LinkedList<Integer> qeueue = new LinkedList<>();
-        int[] result = new int[nums.length - 1 + k];
+        LinkedList<Integer> queue = new LinkedList<>();
+        int[] result = new int[nums.length - k + 1];
         int temp = 0;
 
         for (int i = 0; i < nums.length; i++) {
-            while (!qeueue.isEmpty() && nums[qeueue.peekLast()] <= nums[i]) {
-                qeueue.pollLast();
+            while (!queue.isEmpty() && nums[queue.peekLast()] <= nums[i]) {
+                queue.pollLast();
             }
-            qeueue.offerLast(i);
-            if (qeueue.peekFirst() <= i - k) {
-                qeueue.pollFirst();
+            queue.offerLast(i);
+            if (queue.peekFirst() <= i - k) {
+                queue.pollFirst();
             }
             if (i >= k - 1) {
-                result[temp++] = nums[qeueue.peekFirst()];
+                result[temp++] = nums[queue.peekFirst()];
             }
         }
         return result;

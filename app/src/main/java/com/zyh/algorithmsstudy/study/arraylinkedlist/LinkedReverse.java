@@ -38,6 +38,7 @@ public class LinkedReverse {
     public ListNode reverseListTest(ListNode head) {
         ListNode prev = null;
         ListNode cur = head;
+
         while (cur != null) {
             ListNode temp = cur.next;
             cur.next = prev;

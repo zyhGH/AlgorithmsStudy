@@ -26,19 +26,20 @@ public class InterviewSort {
     }
 
     public static int getPivot(int[] a, int start, int end) {
-        int temp = a[end];
+        int num = a[end];
         int s = start;
 
-        for(int i = s; i < end; i++) {
-            if (a[i] <= temp) {
-                int num = a[i];
-                a[i] = a[s];
-                a[s] = num;
+        for (int i = s; i < end; i++) {
+            if (a[i] < num) {
+                int temp = a[s];
+                a[s] = a[i];
+                a[i] = temp;
                 s++;
             }
         }
+
         a[end] = a[s];
-        a[s] = temp;
+        a[s] = num;
         return s;
     }
 
@@ -48,7 +49,6 @@ public class InterviewSort {
      */
     public static void mergeSort(int[] a) {
         makeGroup(a, 0, a.length - 1);
-
         for (int b:
                 a){
             System.out.print(b + " ");
@@ -57,6 +57,7 @@ public class InterviewSort {
 
     public static void makeGroup(int[] a, int start, int end) {
         if (start >= end) return;
+
         int mid = (start + end) / 2;
         makeGroup(a, start, mid);
         makeGroup(a, mid + 1, end);

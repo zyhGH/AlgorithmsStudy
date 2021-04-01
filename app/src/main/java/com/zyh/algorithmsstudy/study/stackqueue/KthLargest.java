@@ -35,15 +35,15 @@ class KthLargestTest {
     int k;
 
     public KthLargestTest(int k, int[] nums) {
-        this.k = k;
         pq = new PriorityQueue<>(k);
+        this.k = k;
         for (int i = 0; i < nums.length; i++) {
             add(nums[i]);
         }
     }
 
     public int add(int val) {
-        if (pq.size() < 3) {
+        if (pq.size() < k) {
             pq.offer(val);
         }else {
             if (pq.peek() < val) {
