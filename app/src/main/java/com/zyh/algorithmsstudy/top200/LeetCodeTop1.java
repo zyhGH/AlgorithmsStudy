@@ -15,7 +15,7 @@ public class LeetCodeTop1 {
     }
 
     public static int[] twoSum(int[] nums, int target) {
-        int[] result = new int[2];
+        /*int[] result = new int[2];
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             if (map.containsKey(target - nums[i])) {
@@ -26,6 +26,21 @@ public class LeetCodeTop1 {
                 map.put(nums[i], i);
             }
         }
-        return result;
+        return result;*/
+        int index = 0;
+        int move = 1;
+        int[] result = new int[2];
+        while(move < nums.length) {
+            for(int i = move; i < nums.length; i++) {
+                if(target - nums[index] == nums[i]) {
+                    result[0] = nums[index];
+                    result[1] = nums[i];
+                    return result;
+                }
+            }
+            index++;
+            move++;
+        }
+        return null;
     }
 }
