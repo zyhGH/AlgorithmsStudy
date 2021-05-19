@@ -23,4 +23,5 @@ public class LeetCodeTop70 {
         }
         return j;
     }
+
 }
